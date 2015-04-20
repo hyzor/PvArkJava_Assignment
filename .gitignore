@@ -22,3 +22,5 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 .nb-gradle/
+/EnterpriseApplication1-war/nbproject/private/
+/EnterpriseApplication1-ejb/nbproject/private/
