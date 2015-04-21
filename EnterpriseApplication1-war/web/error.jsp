@@ -13,5 +13,6 @@
     </head>
     <body>
         <h1>Error!</h1>
+        <input type="button" name="backBtn" value="Back" onclick="history.back()"></input>
     </body>
 </html>

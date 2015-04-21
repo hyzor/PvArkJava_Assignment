@@ -36,10 +36,15 @@ public class MainServlet extends HttpServlet {
     ResultSet rs = null;
     SqlBean sqlBean = null;
     
-    static final String SQL_DB_URL="jdbc:derby://localhost:1527/MyDatabase";
-    static final String SQL_DRIVER="org.apache.derby.jdbc.ClientDriver";
+    // SQL names
+    static final String SQL_DB_URL = "jdbc:derby://localhost:1527/MyDatabase";
+    static final String SQL_DRIVER = "org.apache.derby.jdbc.ClientDriver";
     static final String SQL_USERNAME = "test";
     static final String SQL_PASSWORD = "test123";
+    static final String SQL_USERTABLE = "TEST.USERS";
+    static final String SQL_USERTABLE_USERNAME = "Username";
+    static final String SQL_USERTABLE_PASSWORD = "Password";
+    static final String SQL_USERTABLE_EMAIL = "Email";
     
     @Override
     public final void init(ServletConfig config) throws ServletException {
@@ -77,30 +82,20 @@ public class MainServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         try {
-            System.out.println("Connecting to database...");
-            ctx = new InitialContext();
             Class.forName(SQL_DRIVER).newInstance();
-            conn = DriverManager.getConnection(SQL_DB_URL, SQL_USERNAME, SQL_PASSWORD); 
-            System.out.println("Connected!");
             
-            sqlBean = new SqlBean();
-            sqlBean.setConnection(conn);
-        } catch (SQLException sqle) {
-            System.out.println("SQLException: " + sqle.getMessage());
-        } catch (NamingException ne) {
-            System.out.println("NamingException: " + ne.getMessage());
+            sqlBean = new SqlBean(SQL_DB_URL, SQL_USERNAME, SQL_PASSWORD);
+            sqlBean.connect();
+            
         } catch (ClassNotFoundException ex) {
-            //Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("ClassNotFoundException: " + ex.getMessage());
         } catch (InstantiationException ex) {
-            //Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("InstantiationException: " + ex.getMessage());
         } catch (IllegalAccessException ex) {
-            //Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("IllegalAccessException: " + ex.getMessage());
         }
                
-        RequestDispatcher rd = null;
+        RequestDispatcher rd;
         
         if (request.getAttribute("username") == null) {
             rd = request.getRequestDispatcher("loginPage.jsp");
@@ -108,7 +103,6 @@ public class MainServlet extends HttpServlet {
             rd = request.getRequestDispatcher("home.jsp");
         }
         
-        request.setAttribute("sqlBean", sqlBean);
         request.getSession().setAttribute("sqlBean", sqlBean);
         rd.forward(request, response);
     }

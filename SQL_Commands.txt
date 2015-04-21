@@ -1,0 +1,1 @@
+CREATE TABLE TEST.USERS (ID int primary key generated always as identity, Username varchar(255) NOT NULL, Password varchar(255) NOT NULL, Email varchar(255) NOT NULL, UNIQUE(Username));

@@ -3,8 +3,9 @@
     Created on : Apr 20, 2015, 8:03:41 PM
     Author     : hyzor
 --%>
-<jsp:forward page="/MainServlet2" />
+<jsp:forward page="/MainServlet" />
 
+<%--
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -26,3 +27,4 @@
         %>
     </body>
 </html>
+--%>

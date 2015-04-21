@@ -9,15 +9,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Login page</title>
     </head>
     <body>
         <h1>Login</h1>
-        <form action="loginCheck.jsp" method="post">
+        <form action="${pageContext.request.contextPath}/LoginCheckServlet" method="post">
             <p>
                 Username <input type="text" name="username"/><br/>
                 Password <input type="text" name="password"/><br/>
-                <input type ="submit" value="Submit"/>
+                <input type ="submit" value="Login"/>
+            </p>
+        </form>
+        <form action="registrationPage.jsp" method="post">
+            <p>
+                <input type ="submit" value="Register"/>
             </p>
         </form>
     </body>

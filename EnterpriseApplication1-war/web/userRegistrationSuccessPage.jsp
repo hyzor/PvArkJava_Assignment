@@ -1,7 +1,7 @@
 <%-- 
-    Document   : home
-    Created on : Apr 20, 2015, 12:58:39 PM
-    Author     : Jesper
+    Document   : userRegistrationSuccessPage
+    Created on : Apr 21, 2015, 7:09:27 PM
+    Author     : hyzor
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,19 +9,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home page</title>
+        <title>JSP Page</title>
     </head>
     <body>
-        <h1>Welcome 
+        <h1>User         
         <%
             String username = session.getAttribute("username").toString();
-            out.println(username);
+            out.println(username + " ");
         %>
-        !</h1>
+        successfully registered!
+        </h1>
         
-        <form action="logout.jsp" method="post">
+        <form action="loginPage.jsp" method="post">
             <p>
-                <input type ="submit" value="Logout"/>
+                <input type ="submit" value="Back"/>
             </p>
         </form>
     </body>
