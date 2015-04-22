@@ -56,7 +56,9 @@ public class LoginCheckServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        SqlBean sqlBean = (SqlBean) request.getSession().getAttribute("sqlBean");
+        //SqlBean sqlBean = (SqlBean) request.getSession().getAttribute("sqlBean");
+        
+        SqlBean sqlBean = MainServlet.getSqlBean(request);
 
         String sql = "SELECT Password FROM " + MainServlet.SQL_USERTABLE 
                 + " WHERE Username=" + "'" + username + "'";

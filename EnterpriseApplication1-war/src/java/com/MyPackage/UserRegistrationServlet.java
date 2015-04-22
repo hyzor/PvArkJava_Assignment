@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -56,7 +57,9 @@ public class UserRegistrationServlet extends HttpServlet {
         String password = request.getParameter("password");
         String email = request.getParameter("email");
 
-        SqlBean sqlBean = (SqlBean) request.getSession().getAttribute("sqlBean");
+        //SqlBean sqlBean = (SqlBean) request.getSession().getAttribute("sqlBean");
+        
+        SqlBean sqlBean = MainServlet.getSqlBean(request);
 
         // Try to fetch user from SQL database
         String sql = "SELECT Username FROM " + MainServlet.SQL_USERTABLE 
@@ -98,7 +101,7 @@ public class UserRegistrationServlet extends HttpServlet {
                 Logger.getLogger(UserRegistrationServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            response.sendRedirect("loginPage.jsp");
+            response.sendRedirect("userRegistrationSuccessPage.jsp");
         }
     }
 

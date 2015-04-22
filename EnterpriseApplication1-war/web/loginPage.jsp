@@ -5,25 +5,53 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700|Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
         <title>Login page</title>
     </head>
     <body>
-        <h1>Login</h1>
-        <form action="${pageContext.request.contextPath}/LoginCheckServlet" method="post">
-            <p>
-                Username <input type="text" name="username"/><br/>
-                Password <input type="text" name="password"/><br/>
-                <input type ="submit" value="Login"/>
-            </p>
-        </form>
-        <form action="registrationPage.jsp" method="post">
-            <p>
-                <input type ="submit" value="Register"/>
-            </p>
-        </form>
-    </body>
+        <div class="main">
+            <div class="login">
+                <div class="inset">
+                    <form action="${pageContext.request.contextPath}/LoginCheckServlet" method="post">
+                        <div>
+                            <span><label>Username</label></span>
+                            <span><input type="text" class="textbox" id="active" name="username"></span>
+                        </div>
+                        <%--Username <input type="text" name="username"/><br/>--%>
+                        <%--Password <input type="password" name="password"/><br/>--%>
+                        <div>
+                            <span><label>Password</label></span>
+                            <span><input type="password" class="password" name="password"></span>
+                        </div>
+                        <%--<input type ="submit" value="Login"/>--%>
+                        <div class="sign">
+                            <div class="submit">
+                                <input type="submit" value="Login" >
+                            </div>
+                            <%--
+                            <span class="forget-pass">
+                                <a href="#">Forgot Password?</a>
+                            </span>
+                            --%>
+                    </form>
+
+                    <form action="registrationPage.jsp" method="post">
+                        <div class="submit">
+                            <input type="submit" value="Register" >
+                        </div>
+
+                    </form>
+                </div>
+                <div class="clear"> </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>

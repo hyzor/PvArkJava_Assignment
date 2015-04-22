@@ -34,7 +34,7 @@ public class MainServlet extends HttpServlet {
     protected Connection conn = null;
     Statement statement = null;
     ResultSet rs = null;
-    SqlBean sqlBean = null;
+    static SqlBean sqlBean = null;
     
     // SQL names
     static final String SQL_DB_URL = "jdbc:derby://localhost:1527/MyDatabase";
@@ -45,6 +45,18 @@ public class MainServlet extends HttpServlet {
     static final String SQL_USERTABLE_USERNAME = "Username";
     static final String SQL_USERTABLE_PASSWORD = "Password";
     static final String SQL_USERTABLE_EMAIL = "Email";
+    
+    public static final SqlBean getSqlBean(HttpServletRequest request) {
+        if (sqlBean == null) {
+            sqlBean = new SqlBean(SQL_DB_URL, SQL_USERNAME, SQL_PASSWORD);
+        }
+        
+        if (request.getSession().getAttribute("sqlBean") == null) {
+            request.getSession().setAttribute("sqlBean", sqlBean);
+        }
+        
+        return sqlBean;
+    }
     
     @Override
     public final void init(ServletConfig config) throws ServletException {
@@ -84,7 +96,7 @@ public class MainServlet extends HttpServlet {
         try {
             Class.forName(SQL_DRIVER).newInstance();
             
-            sqlBean = new SqlBean(SQL_DB_URL, SQL_USERNAME, SQL_PASSWORD);
+            sqlBean = getSqlBean(request);
             sqlBean.connect();
             
         } catch (ClassNotFoundException ex) {
@@ -97,7 +109,7 @@ public class MainServlet extends HttpServlet {
                
         RequestDispatcher rd;
         
-        if (request.getAttribute("username") == null) {
+        if (request.getSession().getAttribute("username") == null) {
             rd = request.getRequestDispatcher("loginPage.jsp");
         } else {
             rd = request.getRequestDispatcher("home.jsp");

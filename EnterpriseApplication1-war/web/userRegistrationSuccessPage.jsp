@@ -9,21 +9,26 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700|Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+        <title>Registration success!</title>
     </head>
     <body>
-        <h1>User         
-        <%
-            String username = session.getAttribute("username").toString();
-            out.println(username + " ");
-        %>
-        successfully registered!
-        </h1>
-        
-        <form action="loginPage.jsp" method="post">
-            <p>
-                <input type ="submit" value="Back"/>
-            </p>
-        </form>
+        <div class="main">
+            <div class="login">
+                <div class="inset">
+                    <h1>Registration was successful!</h1>
+                    <div class="sign">
+                        <div class="submit">
+                            <form action="loginPage.jsp" method="post">
+                                <input type ="submit" value="Back"/>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="clear"> </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

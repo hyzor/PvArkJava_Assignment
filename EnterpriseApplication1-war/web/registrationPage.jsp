@@ -9,23 +9,43 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700|Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+        <title>Registration page</title>
     </head>
     <body>
-        <h1>Registration</h1>
-        <form action="${pageContext.request.contextPath}/UserRegistrationServlet" method="post">
-            <p>
-                Username <input type="text" name="username"/><br/>
-                Password <input type="text" name="password"/><br/>
-                E-mail <input type="text" name="email"/><br/>
-                <input type ="submit" value="Register"/>
-            </p>
-        </form>
+        <div class="main">
+            <div class="login">
+                <div class="inset">
+                    <form action="${pageContext.request.contextPath}/UserRegistrationServlet" method="post">
+                        <div>
+                            <span><label>Username</label></span>
+                            <span><input type="text" class="textbox" id="active" name="username"></span>
+                        </div>
+                        <div>
+                            <span><label>Password</label></span>
+                            <span><input type="password" class="textbox" name="password"></span>
+                        </div>
+                        <div>
+                            <span><label>E-mail</label></span>
+                            <span><input type="text" class="textbox" name="email"></span>
+                        </div>
+                        <%--<input type ="submit" value="Register"/>--%>
+                        <div class="sign">
+                        <div class="submit">
+                            <input type="submit" value="Register" >
+                        </div>
+                    </form>
 
-        <form action="loginPage.jsp" method="post">
-            <p>
-                <input type ="submit" value="Cancel"/>
-            </p>
-        </form>
+                    <form action="loginPage.jsp" method="post">
+                        <div class="submit">
+                            <input type="submit" value="Cancel" >
+                        </div>
+                    </form>
+                    </div>
+                    <div class="clear"> </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
