@@ -24,13 +24,10 @@
                             <span><label>Username</label></span>
                             <span><input type="text" class="textbox" id="active" name="username"></span>
                         </div>
-                        <%--Username <input type="text" name="username"/><br/>--%>
-                        <%--Password <input type="password" name="password"/><br/>--%>
                         <div>
                             <span><label>Password</label></span>
                             <span><input type="password" class="password" name="password"></span>
                         </div>
-                        <%--<input type ="submit" value="Login"/>--%>
                         <div class="sign">
                             <div class="submit">
                                 <input type="submit" value="Login" >

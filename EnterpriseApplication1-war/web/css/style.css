@@ -68,6 +68,10 @@ body{
 }
 */
 
+h1 {
+    	font-family: 'Open Sans', sans-serif;
+}
+
 form span {
 	display: block;
 	font-size: 1em;
