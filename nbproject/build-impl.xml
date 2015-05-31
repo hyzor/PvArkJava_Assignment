@@ -228,7 +228,6 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${reference.EnterpriseApplication1-war.dist-ear}" todir="${build.dir}//"/>
         <copyfiles files="${reference.EnterpriseApplication1-ejb.dist-ear}" todir="${build.dir}//"/>
         <copyfiles files="${reference.WebServicesTest.dist-ear}" todir="${build.dir}//"/>
-        <copyfiles files="${reference.WebServicesTest.dist-ear}" todir="${build.dir}//"/>
     </target>
     <target name="post-compile">
         <!-- Empty placeholder for easier customization. -->

@@ -4,6 +4,14 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>com.MyPackage.Filters.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/secured/*</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>MainServlet</servlet-name>
         <servlet-class>com.MyPackage.MainServlet</servlet-class>
@@ -33,9 +41,15 @@
         <servlet-name>UserRegistrationServlet</servlet-name>
         <url-pattern>/UserRegistrationServlet</url-pattern>
     </servlet-mapping>
+    <!--
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    -->
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -43,6 +57,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
+        <welcome-file>secured/home.xhtml</welcome-file>
     </welcome-file-list>
 </web-app>
