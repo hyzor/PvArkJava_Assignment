@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.MyPackage;
+package com.MyPackage.Beans;
 
 import com.MyPackage.Entities.Users;
+import com.MyPackage.LoggedIn;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -26,7 +27,7 @@ import javax.persistence.Query;
 public class LoginBean implements Serializable {
     
     @Inject
-    UserCredentials credentials;
+    UserCredentialsBean credentials;
     
     @PersistenceContext(unitName = "EnterpriseApplication1-warPU") 
     private EntityManager userDatabase;

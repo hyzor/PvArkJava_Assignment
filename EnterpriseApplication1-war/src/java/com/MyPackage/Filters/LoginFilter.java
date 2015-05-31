@@ -5,7 +5,7 @@
  */
 package com.MyPackage.Filters;
 
-import com.MyPackage.LoginBean;
+import com.MyPackage.Beans.LoginBean;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;

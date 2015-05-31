@@ -27,4 +27,8 @@ public class NavigationBean implements Serializable {
         return "/userRegistration.xhtml?faces-redirect=true";
     }
     
+    public String RedirectToLoginPage() {
+        return "/loginPage.xhtml?faces-redirect=true";
+    }
+    
 }

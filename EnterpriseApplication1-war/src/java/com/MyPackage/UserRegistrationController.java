@@ -5,6 +5,7 @@
  */
 package com.MyPackage;
 
+import com.MyPackage.Beans.UserRegistrationInputBean;
 import com.MyPackage.Entities.service.UsersService;
 import com.MyPackage.Entities.Users;
 import static com.sun.faces.facelets.util.Path.context;
@@ -58,6 +59,8 @@ public class UserRegistrationController implements Serializable {
                 user.setPassword(inputData.getPassword());
                 user.setEmail(inputData.getEmail());
                 usersService.addUser(user);
+                
+                // Redirect to login
             }
         }
     }

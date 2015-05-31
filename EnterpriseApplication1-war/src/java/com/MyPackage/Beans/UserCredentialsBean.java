@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.MyPackage;
+package com.MyPackage.Beans;
 
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
@@ -15,7 +15,7 @@ import javax.inject.Named;
  */
 @Named("userCredentials")
 @RequestScoped
-public class UserCredentials implements Serializable {
+public class UserCredentialsBean implements Serializable {
     
     private String username;
     private String password;
@@ -39,7 +39,7 @@ public class UserCredentials implements Serializable {
     /**
      * Creates a new instance of UserCredentials
      */
-    public UserCredentials() {
+    public UserCredentialsBean() {
     }
     
 }
