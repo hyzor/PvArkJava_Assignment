@@ -5,10 +5,11 @@
  */
 package com.MyPackage;
 
-import com.MyPackage.Entities.EJB.UsersEJB;
+import com.MyPackage.Entities.service.UsersService;
 import com.MyPackage.Entities.Users;
 import static com.sun.faces.facelets.util.Path.context;
 import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -24,20 +25,20 @@ import javax.naming.Context;
  */
 @Named(value = "userRegistrationBean")
 @SessionScoped
-public class UserRegistrationBean implements Serializable {
+public class UserRegistrationController implements Serializable {
     
     @Inject
     UserRegistrationInputBean inputData;
     
-    @PersistenceContext(unitName = "EnterpriseApplication1-warPU") 
-    private EntityManager userDatabase;
+    @EJB
+    private UsersService usersService;
     
     private Users user;
 
     /**
      * Creates a new instance of UserRegistrationBean
      */
-    public UserRegistrationBean() {
+    public UserRegistrationController() {
     }
     
     public void DoRegister() {
@@ -52,19 +53,11 @@ public class UserRegistrationBean implements Serializable {
                 // Error!
                 // User already exists
             } else {
-                final Context context = EJBContainer.createEJBContainer(p).getContext();
-                UsersEJB usersEJB = (UsersEJB)context.lookup("java:global/injection-of-entitymanager/UsersEJB");
                 user = new Users();
                 user.setUsername(inputData.getUsername());
                 user.setPassword(inputData.getPassword());
                 user.setEmail(inputData.getEmail());
-                
-                usersEJB.addUser(user);
-                
-                //userDatabase.getTransaction().begin();
-                //userDatabase.persist(user);
-                //userDatabase.getTransaction().commit();
-                //userDatabase.close();
+                usersService.addUser(user);
             }
         }
     }

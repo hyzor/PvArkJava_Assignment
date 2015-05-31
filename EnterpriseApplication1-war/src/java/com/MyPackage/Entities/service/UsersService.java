@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.MyPackage.Entities.EJB;
+package com.MyPackage.Entities.service;
 
 import com.MyPackage.Entities.Users;
 import java.util.List;
 import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
@@ -17,10 +18,10 @@ import javax.persistence.Query;
  *
  * @author Hyzor
  */
-@Stateful
-public class UsersEJB {
+@Stateless
+public class UsersService {
     
-    @PersistenceContext(unitName = "EnterpriseApplication1-warPU", type = PersistenceContextType.EXTENDED)
+    @PersistenceContext(unitName = "EnterpriseApplication1-warPU")
     private EntityManager entityManager;
     
     public void addUser(Users user) {
@@ -29,6 +30,10 @@ public class UsersEJB {
     
     public void deleteUser(Users user) {
         entityManager.remove(user);
+    }
+    
+    public Users findUser(int id) {
+        return entityManager.find(Users.class, id);
     }
     
     public List<Users> getUsers() throws Exception {
