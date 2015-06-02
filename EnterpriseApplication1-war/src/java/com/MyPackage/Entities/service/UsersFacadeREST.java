@@ -5,7 +5,7 @@
  */
 package com.MyPackage.Entities.service;
 
-import com.MyPackage.Entities.Users;
+import com.MyPackage.Entities.User;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -25,25 +25,25 @@ import javax.ws.rs.Produces;
  */
 @Stateless
 @Path("com.mypackage.entities.users")
-public class UsersFacadeREST extends AbstractFacade<Users> {
+public class UsersFacadeREST extends AbstractFacade<User> {
     @PersistenceContext(unitName = "EnterpriseApplication1-warPU")
     private EntityManager em;
 
     public UsersFacadeREST() {
-        super(Users.class);
+        super(User.class);
     }
 
     @POST
     @Override
     @Consumes({"application/xml", "application/json"})
-    public void create(Users entity) {
+    public void create(User entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({"application/xml", "application/json"})
-    public void edit(@PathParam("id") Integer id, Users entity) {
+    public void edit(@PathParam("id") Integer id, User entity) {
         super.edit(entity);
     }
 
@@ -56,21 +56,21 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public Users find(@PathParam("id") Integer id) {
+    public User find(@PathParam("id") Integer id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({"application/xml", "application/json"})
-    public List<Users> findAll() {
+    public List<User> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({"application/xml", "application/json"})
-    public List<Users> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<User> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 

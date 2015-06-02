@@ -13,7 +13,7 @@ import javax.inject.Named;
  *
  * @author Hyzor
  */
-@Named("userCredentials")
+@Named("userCredentialsBean")
 @RequestScoped
 public class UserCredentialsBean implements Serializable {
     

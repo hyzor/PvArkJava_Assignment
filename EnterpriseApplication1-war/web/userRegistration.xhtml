@@ -16,8 +16,8 @@
                         <h3>Register new user</h3>
                         <h:form>
                             <h:inputText id="input_Username" size="64" maxlength="64" value="#{userRegistrationInputBean.username}" />
-                            <h:inputText id="input_Password" size="64" maxlength="64" value="#{userRegistrationInputBean.password}" />
-                            <h:inputText id="input_Password_Confirmation" size="64" maxlength="64" value="#{userRegistrationInputBean.password_confirmation}" />
+                            <h:inputSecret id="input_Password" size="64" maxlength="64" value="#{userRegistrationInputBean.password}" />
+                            <h:inputSecret id="input_Password_Confirmation" size="64" maxlength="64" value="#{userRegistrationInputBean.password_confirmation}" />
                             <h:inputText id="input_Email" size="64" maxlength="64" value="#{userRegistrationInputBean.email}" />
                             <div class="submit">
                                 <h:commandButton id="submit" value="Register" action="#{userRegistrationBean.DoRegister()}" />
