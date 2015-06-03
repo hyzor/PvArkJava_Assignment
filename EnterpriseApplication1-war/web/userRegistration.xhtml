@@ -6,26 +6,29 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <h:outputStylesheet library="css" name="style.css" />
-        <title>Facelet Title</title>
+        <title>User registration</title>
     </h:head>
     <h:body>
         <f:view>
-            <div class="main">
-                <div class="login">
-                    <div class="inset">
-                        <h3>Register new user</h3>
+            <h:panelGroup layout="block" class="main">
+                <h:panelGroup layout="block" class="login">
+                    <h:panelGroup layout="block" class="inset">
                         <h:form>
-                            <h:inputText id="input_Username" size="64" maxlength="64" value="#{userRegistrationInputBean.username}" />
-                            <h:inputSecret id="input_Password" size="64" maxlength="64" value="#{userRegistrationInputBean.password}" />
-                            <h:inputSecret id="input_Password_Confirmation" size="64" maxlength="64" value="#{userRegistrationInputBean.password_confirmation}" />
-                            <h:inputText id="input_Email" size="64" maxlength="64" value="#{userRegistrationInputBean.email}" />
-                            <div class="submit">
-                                <h:commandButton id="submit" value="Register" action="#{userRegistrationBean.DoRegister()}" />
-                            </div>
+                            <h:outputLabel for="username">Username:</h:outputLabel>
+                            <h:inputText id="username" size="64" maxlength="64" value="#{userRegistrationInputBean.username}" />
+                            <h:outputLabel for="password">Password:</h:outputLabel>
+                            <h:inputSecret id="password" size="64" maxlength="64" value="#{userRegistrationInputBean.password}" />
+                            <h:outputLabel for="password_confirmation">Password confirmation:</h:outputLabel>
+                            <h:inputSecret id="password_confirmation" size="64" maxlength="64" value="#{userRegistrationInputBean.password_confirmation}" />
+                            <h:outputLabel for="email">Email:</h:outputLabel>
+                            <h:inputText id="email" size="64" maxlength="64" value="#{userRegistrationInputBean.email}" />
+                            <h:panelGroup layout="block" class="submit">
+                                <h:commandButton id="register" value="Register" action="#{userRegistrationController.doRegister}" />
+                            </h:panelGroup>
                         </h:form>
-                    </div>
-                </div>
-            </div>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </h:panelGroup>
         </f:view>
     </h:body>
 </html>

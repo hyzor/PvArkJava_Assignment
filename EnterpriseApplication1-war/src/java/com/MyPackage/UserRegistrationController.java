@@ -6,10 +6,10 @@
 package com.MyPackage;
 
 import com.MyPackage.Beans.UserRegistrationInputBean;
-import com.MyPackage.Entities.service.UsersService;
+import com.MyPackage.Entities.service.UserFacade;
 import com.MyPackage.Entities.User;
 import com.MyPackage.Entities.UsersGroups;
-import com.MyPackage.Entities.service.UsersGroupsService;
+import com.MyPackage.Entities.service.UsersGroupsFacade;
 import static com.sun.faces.facelets.util.Path.context;
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import java.io.Serializable;
@@ -30,7 +30,7 @@ import javax.naming.Context;
  *
  * @author Hyzor
  */
-@Named(value = "userRegistrationBean")
+@Named
 @SessionScoped
 public class UserRegistrationController implements Serializable {
     
@@ -38,10 +38,10 @@ public class UserRegistrationController implements Serializable {
     UserRegistrationInputBean inputData;
     
     @EJB
-    private UsersService usersService;
+    private UserFacade usersService;
     
     @EJB
-    private UsersGroupsService usersGroupsService;
+    private UsersGroupsFacade usersGroupsService;
     
     private User user;
 
@@ -51,7 +51,9 @@ public class UserRegistrationController implements Serializable {
     public UserRegistrationController() {
     }
     
-    public void DoRegister() {      
+    public String doRegister() {      
+        String result = "fail";
+        
         String username = inputData.getUsername();
         String password = inputData.getPassword();
         String password_conf = inputData.getPassword_confirmation();
@@ -89,16 +91,17 @@ public class UserRegistrationController implements Serializable {
                 {
                     String encode_result = Base64.encode(digestResult).toString();
                     user.setPassword(encode_result);
-                    usersService.addUser(user);
+                    usersService.create(user);
                     
                     UsersGroups userGroup = new UsersGroups();
                     userGroup.setGroupname("user");
                     userGroup.setUsername(username);
-                    usersGroupsService.addUserGroup(userGroup);
+                    usersGroupsService.create(userGroup);
+                    result = "success";
                 }
             }
         }
+        
+        return result;
     }
-    
-    
 }

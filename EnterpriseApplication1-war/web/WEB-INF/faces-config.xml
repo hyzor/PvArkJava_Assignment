@@ -7,9 +7,33 @@
     <navigation-rule>
         <from-view-id>/userRegistration.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>loginPage</from-outcome>
+            <from-outcome>success</from-outcome>
             <to-view-id>/loginPage.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/loginPage.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/secured/home.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/secured/home.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>logoutSuccess</from-outcome>
+            <to-view-id>/loginPage.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <managed-bean>
+        <managed-bean-name>TestManagedBean</managed-bean-name>
+        <managed-bean-class>com.MyPackage.Beans.NewJSFManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
 </faces-config>

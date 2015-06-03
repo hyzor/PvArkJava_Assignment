@@ -3,22 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.MyPackage.Beans;
+package com.MyPackage;
 
+import com.MyPackage.Beans.NavigationBean;
+import com.MyPackage.Beans.UserCredentialsBean;
 import com.MyPackage.Entities.User;
-import com.MyPackage.LoggedIn;
+import com.MyPackage.Entities.service.UserFacade;
+import java.io.IOException;
 import java.io.Serializable;
-import java.util.List;
-import javax.faces.bean.ManagedBean;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,25 +28,24 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Hyzor
  */
-@Named("loginBean")
+@Named
 @SessionScoped
-public class LoginBean implements Serializable {
+public class UserLoginController implements Serializable {
+    
+    @EJB
+    UserFacade usersFacade;
     
     @Inject
     UserCredentialsBean credentials;
     
-    @PersistenceContext(unitName = "EnterpriseApplication1-warPU") 
-    private EntityManager userDatabase;
+    @Inject
+    NavigationBean navigationBean;
     
     private User user;
-
-    /**
-     * Creates a new instance of LoginBean
-     */
-    public LoginBean() {
-    }
     
-    public void DoLogin() {        
+    public String doLogin() {
+        String result = "fail";
+        
         /*
         Query loginQuery;
         loginQuery = userDatabase.createQuery("select u from Users u where u.username=:username and u.password=:password");
@@ -71,19 +72,41 @@ public class LoginBean implements Serializable {
         
         try {
             request.login(username, password);
+            result = "success";
+            user = usersFacade.findUser(username);
         } catch (ServletException e) {
             e.printStackTrace();
             fContext.addMessage(null, new FacesMessage("Login failed."));
         }
+        
+        return result;
     }
     
-    public boolean IsLoggedIn() {
+    public String doLogout() {
+        String result = "logoutFail";
+        
+        FacesContext fContext = FacesContext.getCurrentInstance();
+        ExternalContext extContext = fContext.getExternalContext();
+        HttpServletRequest request = (HttpServletRequest) extContext.getRequest();
+        try {
+            request.logout();
+            extContext.invalidateSession();
+            user = null;
+            result = "logoutSuccess";
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
+        
+        return result;
+    }
+    
+    public boolean isLoggedIn() {
         return user != null;
     }
     
     @Produces
     @LoggedIn
-    User GetCurrentUser() {
+    User getCurrentUser() {
         return user;
     }
 }

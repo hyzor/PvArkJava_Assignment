@@ -6,37 +6,39 @@
 package com.MyPackage.Entities.service;
 
 import com.MyPackage.Entities.User;
-import com.MyPackage.Entities.UsersGroups;
 import java.util.List;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
 
 /**
  *
- * @author Jesper
+ * @author Hyzor
  */
 @Stateless
-public class UsersGroupsService {
+public class UserFacade extends AbstractFacade<User> {
     
     @PersistenceContext(unitName = "EnterpriseApplication1-warPU")
-    private EntityManager entityManager;
-    
-    public void addUserGroup(UsersGroups userGroup) {
-        entityManager.persist(userGroup);
+    private EntityManager em;
+
+    @Override
+    protected EntityManager getEntityManager() {
+        return em;
     }
     
-    public void deleteUserGroup(UsersGroups userGroup) {
-        entityManager.remove(userGroup);
+    public UserFacade() {
+        super(User.class);
     }
     
-    public UsersGroups findUsersGroups(int id) {
-        return entityManager.find(UsersGroups.class, id);
+    public User findUser(String username) {
+        return em.find(User.class, username);
     }
     
-    public List<UsersGroups> getUsers() throws Exception {
-        Query query = entityManager.createQuery("SELECT u from Users_Groups as u");
+    public List<User> getUsers() throws Exception {
+        Query query = em.createQuery("SELECT u from Users as u");
         return query.getResultList();
     }
 

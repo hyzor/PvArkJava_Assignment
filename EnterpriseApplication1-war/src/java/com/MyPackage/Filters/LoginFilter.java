@@ -5,7 +5,7 @@
  */
 package com.MyPackage.Filters;
 
-import com.MyPackage.Beans.LoginBean;
+import com.MyPackage.UserLoginController;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -118,9 +118,9 @@ public class LoginFilter implements Filter {
             t.printStackTrace();
         }
         
-        LoginBean loginBean = (LoginBean)((HttpServletRequest)request).getSession().getAttribute("loginBean");
+        UserLoginController loginBean = (UserLoginController)((HttpServletRequest)request).getSession().getAttribute("loginBean");
         
-        if (loginBean == null || !loginBean.IsLoggedIn()) {
+        if (loginBean == null || !loginBean.isLoggedIn()) {
             String contextPath = ((HttpServletRequest)request).getContextPath();
             ((HttpServletResponse)response).sendRedirect(contextPath + "/loginPage.xhtml");
         }

@@ -4,6 +4,9 @@
     <service name="NewWebService">
       <implementation-class>com.MyPackage.Services.NewWebService</implementation-class>
     </service>
+    <service name="OrderTrackingWebservice">
+      <implementation-class>com.MyPackage.Services.OrderTrackingWebservice</implementation-class>
+    </service>
   </services>
   <clients>
     <client name="NewWebService">

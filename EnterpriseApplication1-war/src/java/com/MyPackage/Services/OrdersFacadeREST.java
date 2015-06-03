@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.MyPackage.Entities.service;
+package com.MyPackage.Services;
 
-import com.MyPackage.Entities.User;
+import com.MyPackage.Entities.Orders;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -21,29 +21,29 @@ import javax.ws.rs.Produces;
 
 /**
  *
- * @author Hyzor
+ * @author Jesper
  */
 @Stateless
-@Path("com.mypackage.entities.users")
-public class UsersFacadeREST extends AbstractFacade<User> {
+@Path("com.mypackage.entities.orders")
+public class OrdersFacadeREST extends AbstractFacade<Orders> {
     @PersistenceContext(unitName = "EnterpriseApplication1-warPU")
     private EntityManager em;
 
-    public UsersFacadeREST() {
-        super(User.class);
+    public OrdersFacadeREST() {
+        super(Orders.class);
     }
 
     @POST
     @Override
     @Consumes({"application/xml", "application/json"})
-    public void create(User entity) {
+    public void create(Orders entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({"application/xml", "application/json"})
-    public void edit(@PathParam("id") Integer id, User entity) {
+    public void edit(@PathParam("id") Integer id, Orders entity) {
         super.edit(entity);
     }
 
@@ -56,21 +56,21 @@ public class UsersFacadeREST extends AbstractFacade<User> {
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public User find(@PathParam("id") Integer id) {
+    public Orders find(@PathParam("id") Integer id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({"application/xml", "application/json"})
-    public List<User> findAll() {
+    public List<Orders> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({"application/xml", "application/json"})
-    public List<User> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Orders> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 

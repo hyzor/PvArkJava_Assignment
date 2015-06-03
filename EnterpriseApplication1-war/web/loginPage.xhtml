@@ -2,30 +2,43 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <h:outputStylesheet library="css" name="style.css" />
         <title>Login page</title>
     </h:head>
     <h:body>
-         <f:view>
-                <div class="main">
-            <div class="login">
-                <div class="inset">
-                    <h3>Please login to proceed</h3>
-                    <h:form>
-                        <h:inputText id="input_Username" size="64" maxlength="64" value="#{userCredentialsBean.username}" />
-                        <h:inputSecret id="input_Password" size="64" maxlength="64" value="#{userCredentialsBean.password}" />
-                        <div class="submit">
-                            <h:commandButton id="submit" value="Login" action="#{loginBean.DoLogin()}" />
-                            <h:commandButton id="submit_register" value="Register" action="#{nagivationBean.RedirectToRegistrationPage()}" />
-                        </div>
-                    </h:form>
-                </div>
-            </div>
-        </div>
-              </f:view>
+        <f:view>
+            <h:panelGroup layout="block" class="main">
+                <h:panelGroup layout="block" class="login">
+                    <h:panelGroup layout="block" class="inset">
+                        <h:form>
+                            <f:validateBean>
+                                <h:outputLabel for="username">Username:</h:outputLabel>
+                                <h:inputText id="username" size="64" maxlength="64" value="#{userCredentialsBean.username}"
+                                             required="true"/>
+                                <h:outputLabel for="password">Password:</h:outputLabel>
+                                <h:inputSecret id="password" size="64" maxlength="64" value="#{userCredentialsBean.password}"
+                                               required="true" />
+                            </f:validateBean>
+                            <h:panelGroup layout="block" class="submit">
+                                <h:commandButton id="login" value="Login" action="#{userLoginController.doLogin}" />
+                            </h:panelGroup>
+                        </h:form>
+
+                        <h:form>
+                            <h:panelGroup layout="block" class="submit">
+                                <h:commandButton id="register" value="Register" action="#{navigationBean.redirectToRegistrationPage}" />
+                            </h:panelGroup>
+                        </h:form>   
+
+                        
+                    </h:panelGroup>
+                </h:panelGroup>
+            </h:panelGroup>
+        </f:view>
     </h:body>
 </html>
 

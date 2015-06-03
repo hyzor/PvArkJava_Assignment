@@ -5,21 +5,24 @@
  */
 package com.MyPackage.Beans;
 
-import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 
 /**
  *
  * @author Hyzor
  */
-@Named("userCredentialsBean")
+@Named
 @RequestScoped
-public class UserCredentialsBean implements Serializable {
+public class UserCredentialsBean {
     
     private String username;
     private String password;
     
+    @NotNull
+    @Length(min=1, max=255)
     public String getUsername() {
         return username;
     }
@@ -28,6 +31,8 @@ public class UserCredentialsBean implements Serializable {
         this.username = username;
     }
 
+    @NotNull
+    @Length(min=1, max=255)
     public String getPassword() {
         return password;
     }
@@ -39,7 +44,4 @@ public class UserCredentialsBean implements Serializable {
     /**
      * Creates a new instance of UserCredentials
      */
-    public UserCredentialsBean() {
-    }
-    
 }

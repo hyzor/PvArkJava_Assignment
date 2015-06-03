@@ -49,19 +49,13 @@
         <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
     -->
-        <security-constraint>
+    <security-constraint>
         <display-name>All Access</display-name>
         <web-resource-collection>
             <web-resource-name>None Protected User Area</web-resource-name>
-            <description/>
             <url-pattern>/*</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
-            <http-method>HEAD</http-method>
-            <http-method>PUT</http-method>
-            <http-method>OPTIONS</http-method>
-            <http-method>TRACE</http-method>
-            <http-method>DELETE</http-method>
         </web-resource-collection>
         <user-data-constraint>
             <transport-guarantee>NONE</transport-guarantee>
@@ -70,16 +64,10 @@
     <security-constraint>
         <display-name>Secured Access</display-name>
         <web-resource-collection>
-            <web-resource-name>None Protected User Area</web-resource-name>
-            <description/>
+            <web-resource-name>Protected User Area</web-resource-name>
             <url-pattern>/secured/*</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
-            <http-method>HEAD</http-method>
-            <http-method>PUT</http-method>
-            <http-method>OPTIONS</http-method>
-            <http-method>TRACE</http-method>
-            <http-method>DELETE</http-method>
         </web-resource-collection>
         <auth-constraint>
             <description/>
