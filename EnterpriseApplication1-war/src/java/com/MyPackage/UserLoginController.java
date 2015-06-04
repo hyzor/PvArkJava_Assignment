@@ -7,6 +7,7 @@ package com.MyPackage;
 
 import com.MyPackage.Beans.NavigationBean;
 import com.MyPackage.Beans.UserCredentialsBean;
+import com.MyPackage.Beans.UserRegistrationInputBean;
 import com.MyPackage.Entities.User;
 import com.MyPackage.Entities.service.UserFacade;
 import java.io.IOException;
@@ -41,28 +42,13 @@ public class UserLoginController implements Serializable {
     @Inject
     NavigationBean navigationBean;
     
+    @Inject
+    UserRegistrationInputBean inputData;
+    
     private User user;
     
     public String doLogin() {
         String result = "fail";
-        
-        /*
-        Query loginQuery;
-        loginQuery = userDatabase.createQuery("select u from Users u where u.username=:username and u.password=:password");
-        loginQuery.setParameter("username", credentials.getUsername());
-        loginQuery.setParameter("password", credentials.getPassword());
-        
-        List<Users> result = loginQuery.getResultList();
-        
-        if (!result.isEmpty()) {
-            user = result.get(0);
-            redirect = "home";
-        } else {
-            redirect = "errorLoginPage";
-            // Error!
-            // User not found.
-        }
-        */
         
         String username = credentials.getUsername();
         String password = credentials.getPassword();
@@ -100,13 +86,37 @@ public class UserLoginController implements Serializable {
         return result;
     }
     
+    public String doChange(){
+        String result;
+        String password = inputData.getPassword();
+       // String password_conf = inputData.getPassword_confirmation();
+        String email = inputData.getEmail();
+        
+        if (email != null && !email.trim().isEmpty()){
+            user.setEmail(email);
+        }
+        if ( password != null && !password.trim().isEmpty()) {
+            String pw_encoded = UserRegistrationController.hashAndEncode(password);
+            
+            if (pw_encoded != null) {
+                user.setPassword(pw_encoded);
+
+            }
+        }
+        
+        result = "changeSuccess";
+        usersFacade.edit(user);
+        
+        return result;
+   }
+    
     public boolean isLoggedIn() {
         return user != null;
     }
     
     @Produces
     @LoggedIn
-    User getCurrentUser() {
+    public User getCurrentUser() {
         return user;
     }
 }

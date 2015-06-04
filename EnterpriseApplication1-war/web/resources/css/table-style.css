@@ -1,0 +1,25 @@
+.order-table{   
+	border-collapse:collapse;
+}
+ 
+.order-table-header{
+        font-family: 'Open Sans', sans-serif;
+	text-align:center;
+	background:none repeat scroll 0 0 #E5E5E5;
+	border-bottom:1px solid #BBBBBB;
+	padding:4px;
+}
+ 
+.order-table-odd-row{
+        font-family: 'Open Sans', sans-serif;
+	text-align:center;
+	background:none repeat scroll 0 0 #FFFFFF;
+	border-top:1px solid #BBBBBB;
+}
+ 
+.order-table-even-row{
+        font-family: 'Open Sans', sans-serif;
+	text-align:center;
+	background:none repeat scroll 0 0 #F9F9F9;
+	border-top:1px solid #BBBBBB;
+}

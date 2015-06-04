@@ -7,6 +7,7 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <h:outputStylesheet library="css" name="style.css" />
+        <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700|Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'/>
         <title>Login page</title>
     </h:head>
     <h:body>
@@ -23,6 +24,7 @@
                                 <h:inputSecret id="password" size="64" maxlength="64" value="#{userCredentialsBean.password}"
                                                required="true" />
                             </f:validateBean>
+                            
                             <h:panelGroup layout="block" class="submit">
                                 <h:commandButton id="login" value="Login" action="#{userLoginController.doLogin}" />
                             </h:panelGroup>
@@ -32,9 +34,9 @@
                             <h:panelGroup layout="block" class="submit">
                                 <h:commandButton id="register" value="Register" action="#{navigationBean.redirectToRegistrationPage}" />
                             </h:panelGroup>
-                        </h:form>   
+                        </h:form>
 
-                        
+                        <h:panelGroup layout="block" class="clear"/>
                     </h:panelGroup>
                 </h:panelGroup>
             </h:panelGroup>

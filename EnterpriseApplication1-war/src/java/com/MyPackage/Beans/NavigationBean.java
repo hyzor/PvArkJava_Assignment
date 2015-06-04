@@ -33,6 +33,22 @@ public class NavigationBean implements Serializable {
         return getRegistrationPage() + facesRedirectStr;
     }
     
+        public String getChangeSettingsPage() {
+        return "/secured/changeSettings.xhtml";
+    }
+    
+    public String redirectToChangeSettingsPage() {
+        return getChangeSettingsPage() + facesRedirectStr;
+    }
+    
+    public String getSettingsPage() {
+        return "/secured/settings.xhtml";
+    }
+    
+    public String redirectToSettingsPage() {
+        return getSettingsPage() + facesRedirectStr;
+    }
+    
     public String getLoginPage() {
         return "/loginPage.xhtml";
     }

@@ -24,9 +24,24 @@
     
     <navigation-rule>
         <from-view-id>/secured/home.xhtml</from-view-id>
+        <from-view-id>/secured/orderHistory.xhtml</from-view-id>
+        <from-view-id>/secured/settings.xhtml</from-view-id>
+        <from-view-id>/secured/changeSettings.xhtml</from-view-id>
+        <from-view-id>/secured/orderPage.xhtml</from-view-id>
+        <from-view-id>/secured/logoutRedirect.xhtml</from-view-id>
         <navigation-case>
+            <from-action>#{userLoginController.doLogout}</from-action>
             <from-outcome>logoutSuccess</from-outcome>
             <to-view-id>/loginPage.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/secured/changeSettings.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>changeSuccess</from-outcome>
+            <to-view-id>/secured/settings.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>

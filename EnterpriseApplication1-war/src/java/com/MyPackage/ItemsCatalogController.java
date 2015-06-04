@@ -15,12 +15,15 @@ import com.MyPackage.Entities.service.OrderItemFacade;
 import com.MyPackage.Entities.service.OrdersFacade;
 import com.MyPackage.Entities.service.UserFacade;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.component.html.HtmlDataTable;
+import javax.faces.component.html.HtmlInputHidden;
 import javax.inject.Inject;
 import javax.persistence.PersistenceContext;
 
@@ -52,6 +55,11 @@ public class ItemsCatalogController implements Serializable {
     private Item selectedBasketItem;
     
     private Integer quantityInput;
+    private int basketSum;
+    
+    public void setBasketSum(int sum) {
+        basketSum = sum;
+    }
 
     public Integer getQuantityInput() {
         return quantityInput;
@@ -83,11 +91,23 @@ public class ItemsCatalogController implements Serializable {
     
     public void addToBasket() {
         itemsBasketBean.addItem(selectedItem, quantityInput);
+        basketSum += selectedItem.getPrice() * quantityInput;
+    }
+    
+    public void clearBasket() {
+        itemsBasketBean.clear();
+        basketSum = 0;
+    }
+    
+    public int getBasketSum() {
+        return basketSum;
     }
     
     public void checkout() {
         Orders order = new Orders();
         order.setUsername(currentUser);
+        order.setOrdertime(new Date());
+        order.setPricesum(basketSum);
         
         ordersFacade.create(order);
         
@@ -100,6 +120,7 @@ public class ItemsCatalogController implements Serializable {
         }
         
         itemsBasketBean.clear();
+        basketSum = 0;
         
         /*
         for (int i = 0; i < itemsBasketBean.getItems().size(); ++i) {
@@ -116,6 +137,7 @@ public class ItemsCatalogController implements Serializable {
      * Creates a new instance of ItemsCatalogController
      */
     public ItemsCatalogController() {
+        basketSum = 0;
     }
     
 }

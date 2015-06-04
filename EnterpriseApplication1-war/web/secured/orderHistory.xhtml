@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+        <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <h:outputStylesheet library="css" name="style.css" />
+        <h:outputStylesheet library="css" name="table-style.css"/>
+        <h:outputStylesheet library="css" name="tabs-style.css"/>
+                <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700|Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'/>
+
+        <title>Order History</title>
+    </h:head>
+    <h:body>
+        <h:panelGroup layout="block" class="main">
+                                               <div id="flip-tabs">
+                    <ul id="flip-navigation">
+                        <li><a href="home.xhtml" id="tab-0">Home</a></li>
+                        <li><a href="settings.xhtml" id="tab-1">Settings</a></li>
+                        <li><a href="orderPage.xhtml" id="tab-2">Order</a></li>
+                        <li class="selected"><a href="orderHistory.xhtml" id="tab-3">Order history</a></li>
+                        <li><a href="logoutRedirect.xhtml" id="tab-4">Logout</a></li>
+                    </ul>
+                </div>
+        
+     <h:dataTable value="#{orderHistoryBean.orders}" var="orderItem"
+                  	styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row">
+                    <h:column>
+                        <f:facet name="header">OrderNo</f:facet>
+                        <h:outputText value="#{orderItem.orderid}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Date</f:facet>
+                        <h:outputText value="#{orderItem.ordertime}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Total price</f:facet>
+                        <h:outputText value="#{orderItem.pricesum}"/>
+                    </h:column>
+                </h:dataTable>
+        </h:panelGroup>
+    </h:body>
+    
+    
+</html>

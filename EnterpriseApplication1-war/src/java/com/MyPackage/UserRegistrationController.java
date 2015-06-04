@@ -76,21 +76,10 @@ public class UserRegistrationController implements Serializable {
                 user.setPassword(password);
                 user.setEmail(email);
                 
-                byte[] digestResult = null;
+                String pw_encoded = hashAndEncode(password);
                 
-                try {
-                    MessageDigest md = MessageDigest.getInstance("SHA-256");
-                    digestResult = md.digest(password.getBytes("UTF-8"));
-                } catch (NoSuchAlgorithmException e) {
-                    e.printStackTrace();
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                
-                if (digestResult != null)
-                {
-                    String encode_result = Base64.encode(digestResult).toString();
-                    user.setPassword(encode_result);
+                if (pw_encoded != null) {
+                    user.setPassword(pw_encoded);
                     usersService.create(user);
                     
                     UsersGroups userGroup = new UsersGroups();
@@ -103,5 +92,25 @@ public class UserRegistrationController implements Serializable {
         }
         
         return result;
+    }
+    
+    public static final String hashAndEncode(String string) {
+        String encode_result = null;
+        byte[] digestResult = null;
+                
+                try {
+                    MessageDigest md = MessageDigest.getInstance("SHA-256");
+                    digestResult = md.digest(string.getBytes("UTF-8"));
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                
+                if (digestResult != null)
+                {
+                    encode_result = Base64.encode(digestResult).toString();
+                }
+        return encode_result;
     }
 }

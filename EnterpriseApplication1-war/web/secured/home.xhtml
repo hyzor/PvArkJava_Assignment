@@ -6,41 +6,26 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <h:outputStylesheet library="css" name="style.css" />
-        <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="table-style.css" />
+        <h:outputStylesheet library="css" name="tabs-style.css" />
+        <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700|Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'/>
+        <title>Home</title>
     </h:head>
     <h:body>
-        <h:panelGroup layout="block" class="main">
-            <h:form>
-                <h:selectOneMenu id="catalog"
-                                 converter="#{itemsConverter}"
-                                 value="#{itemsCatalogController.selectedItem}">
-                    <f:selectItems value="#{itemsCatalogController.items}"
-                                   var="catalogItem"
-                                   itemValue="#{catalogItem}"
-                                   itemLabel="#{catalogItem.itemname}"/>
-                </h:selectOneMenu>
-                
-                <h:inputText id="quantity" value="#{itemsCatalogController.quantityInput}"/>
-                <h:message for="quantity"/>
-
-                <h:panelGroup layout="block" class="submit">
-                    <h:commandButton id="submit" value="Add to basket" action="#{itemsCatalogController.addToBasket}" />
-                    <h:commandButton id="checkout" value="Checkout" action="#{itemsCatalogController.checkout}"/>
-                    <h:commandButton id="logout" value="Logout" action="#{userLoginController.doLogout()}"/>
-                </h:panelGroup>
-                
-                <h:dataTable value="#{itemsBasketBean.itemList}"
-                             var="basketItem">
-                    <h:column>
-                        <h:outputText value="#{basketItem.key.itemname}"/>
-                    </h:column>
-                    <h:column>
-                        <h:outputText value="#{basketItem.value}"/>
-                    </h:column>
-                </h:dataTable>
-            </h:form>
-
-        </h:panelGroup>
+        <div class="main">
+                <div id="flip-tabs">
+                    <ul id="flip-navigation">
+                        <li class="selected"><a href="home.xhtml" id="tab-0">Home</a></li>
+                        <li><a href="settings.xhtml" id="tab-1">Settings</a></li>
+                        <li><a href="orderPage.xhtml" id="tab-2">Order</a></li>
+                        <li><a href="orderHistory.xhtml" id="tab-3">Order history</a></li>
+                        <li><a href="logoutRedirect.xhtml" id="tab-4">Logout</a></li>
+                    </ul>
+                </div>
+                <div class="inset">
+                    <h1>Welcome #{userLoginController.currentUser.username}</h1>
+                </div>
+        </div>
     </h:body>
 </html>
 

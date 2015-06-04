@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <h:outputStylesheet library="css" name="style.css" />
+        <h:outputStylesheet library="css" name="tabs-style.css" />
+        <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700|Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'/>
+        <title>Settings</title>
+    </h:head>
+    <h:body>
+        <div class="main">
+                <div id="flip-tabs" >  
+                    <ul id="flip-navigation" > 
+                        <li><a href="home.xhtml" id="tab-0">Home</a></li>
+                        <li class="selected"><a href="settings.xhtml" id="tab-1">Settings</a></li>
+                        <li><a href="orderPage.xhtml" id="tab-2">Order</a></li>
+                        <li><a href="orderHistory.xhtml" id="tab-3">Order history</a></li>
+                        <li><a href="logoutRedirect.xhtml" id="tab-4">Logout</a></li>
+                    </ul>  
+
+                </div>
+                <div class="inset">
+                    <div>
+                        <h3>Your Settings</h3>
+                    </div>
+                    <div>
+                        <span><label> Username</label> </span>
+                        <br>
+                            <h:outputText value="#{userLoginController.currentUser.username}"/>
+                        </br>
+                    </div>
+                    <div>
+                        <span><label> E-Mail</label></span>
+                        <br>
+                            <h:outputText value="#{userLoginController.currentUser.email}"/>
+                        </br>
+                    </div>
+                    <div class="submit">
+                        <h:form>
+                            <h:commandButton id="submit" value="Change settings" action="#{navigationBean.redirectToChangeSettingsPage()}" />
+                        </h:form>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+        </div>
+    </h:body>
+</html>

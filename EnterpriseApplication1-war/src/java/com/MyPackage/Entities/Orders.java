@@ -6,6 +6,7 @@
 package com.MyPackage.Entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -30,6 +34,13 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Orders.findAll", query = "SELECT o FROM Orders o"),
     @NamedQuery(name = "Orders.findByOrderid", query = "SELECT o FROM Orders o WHERE o.orderid = :orderid")})
 public class Orders implements Serializable {
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "ORDERTIME")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date ordertime;
+    @Column(name = "PRICESUM")
+    private Integer pricesum;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -86,6 +97,22 @@ public class Orders implements Serializable {
     @Override
     public String toString() {
         return "com.MyPackage.Entities.Orders[ orderid=" + orderid + " ]";
+    }
+
+    public Date getOrdertime() {
+        return ordertime;
+    }
+
+    public void setOrdertime(Date ordertime) {
+        this.ordertime = ordertime;
+    }
+
+    public Integer getPricesum() {
+        return pricesum;
+    }
+
+    public void setPricesum(Integer pricesum) {
+        this.pricesum = pricesum;
     }
     
 }
